@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRFrameworkCore2.API", "QRFrameworkCore2.API\QRFrameworkCore2.API.csproj", "{BA76A429-CE1F-46FE-86F7-D5EE93C3A489}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRFrameworkCore2.Data", "QRFrameworkCore2.Data\QRFrameworkCore2.Data.csproj", "{32E969BE-A965-44BC-B1C7-4438C5872B4A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QRFrameworkCore2.Infrastructure", "QRFrameworkCore2.Infrastructure\QRFrameworkCore2.Infrastructure.csproj", "{5D0BFBD2-C7EA-4E38-A2FB-F60463EAEA2B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BA76A429-CE1F-46FE-86F7-D5EE93C3A489}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA76A429-CE1F-46FE-86F7-D5EE93C3A489}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA76A429-CE1F-46FE-86F7-D5EE93C3A489}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA76A429-CE1F-46FE-86F7-D5EE93C3A489}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32E969BE-A965-44BC-B1C7-4438C5872B4A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32E969BE-A965-44BC-B1C7-4438C5872B4A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32E969BE-A965-44BC-B1C7-4438C5872B4A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32E969BE-A965-44BC-B1C7-4438C5872B4A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5D0BFBD2-C7EA-4E38-A2FB-F60463EAEA2B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5D0BFBD2-C7EA-4E38-A2FB-F60463EAEA2B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5D0BFBD2-C7EA-4E38-A2FB-F60463EAEA2B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5D0BFBD2-C7EA-4E38-A2FB-F60463EAEA2B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4C8184C9-D3CE-4759-9A4B-09BF2A055A2D}
+	EndGlobalSection
+EndGlobal
