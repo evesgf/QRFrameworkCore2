@@ -10,17 +10,18 @@ namespace Data.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "AspNetTimedJobs",
+                name: "DynamicTimedJob",
                 columns: table => new
                 {
                     Id = table.Column<string>(maxLength: 128, nullable: false),
                     Begin = table.Column<DateTime>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
                     Interval = table.Column<int>(nullable: false),
                     IsEnabled = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AspNetTimedJobs", x => x.Id);
+                    table.PrimaryKey("PK_DynamicTimedJob", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -37,12 +38,17 @@ namespace Data.Migrations
                 {
                     table.PrimaryKey("PK_SysUser", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DynamicTimedJob_IsEnabled",
+                table: "DynamicTimedJob",
+                column: "IsEnabled");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "AspNetTimedJobs");
+                name: "DynamicTimedJob");
 
             migrationBuilder.DropTable(
                 name: "SysUser");

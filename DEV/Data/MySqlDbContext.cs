@@ -19,7 +19,10 @@ namespace Data
     /// </summary>
     public class MySqlDbContext : DbContext,ITimedJobContext
     {
-        public MySqlDbContext(DbContextOptions<MySqlDbContext> options) : base(options) { }
+        public MySqlDbContext(DbContextOptions opt)
+            : base(opt)
+        {
+        }
 
         public DbSet<TimedJob> TimedJobs { get; set; }
 

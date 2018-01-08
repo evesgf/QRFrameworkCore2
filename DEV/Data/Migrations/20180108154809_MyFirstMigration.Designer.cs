@@ -6,12 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using Microsoft.EntityFrameworkCore.ValueGeneration;
 using System;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(MySqlDbContext))]
-    [Migration("20180108114851_MyFirstMigration")]
+    [Migration("20180108154809_MyFirstMigration")]
     partial class MyFirstMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,7 +45,7 @@ namespace Data.Migrations
                     b.ToTable("SysUser");
                 });
 
-            modelBuilder.Entity("Pomelo.AspNetCore.TimedJob.EntityFramework.TimedJob", b =>
+            modelBuilder.Entity("Pomelo.AspNetCore.TimedJob.DynamicTimedJob", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
@@ -52,13 +53,30 @@ namespace Data.Migrations
 
                     b.Property<DateTime>("Begin");
 
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
+
                     b.Property<int>("Interval");
 
                     b.Property<bool>("IsEnabled");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("IsEnabled");
+
+                    b.ToTable("DynamicTimedJob");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("DynamicTimedJob");
+                });
+
+            modelBuilder.Entity("Pomelo.AspNetCore.TimedJob.EntityFramework.TimedJob", b =>
+                {
+                    b.HasBaseType("Pomelo.AspNetCore.TimedJob.DynamicTimedJob");
+
+
                     b.ToTable("AspNetTimedJobs");
+
+                    b.HasDiscriminator().HasValue("TimedJob");
                 });
 #pragma warning restore 612, 618
         }

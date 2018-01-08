@@ -23,7 +23,3 @@ bld/
 [Bb]in/
 [Oo]bj/
 [Ll]og/
-[cs]proj/
-/DEV/QRFrameworkCore2.API/*.csproj
-/DEV/QRFrameworkCore2.Data/*.csproj
-/DEV/QRFrameworkCore2.Infrastructure/*.csproj

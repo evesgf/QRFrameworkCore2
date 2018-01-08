@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using Core.TimeJob;
+using Data;
+using Pomelo.AspNetCore.TimedJob;
 
 namespace API
 {
@@ -23,6 +26,9 @@ namespace API
             services.UseQR();
 
             services.AddMvc();
+
+            services.AddTimedJob()
+                .AddEntityFrameworkDynamicTimedJob<MySqlDbContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -33,10 +39,15 @@ namespace API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseMvc();
+
             //使用QR框架
             app.UseQR(env, context);
 
-            app.UseMvc();
+            //app.UseTimedJob();
+
+            app.UseTimedJob(); // 使用定时事务
+            SampleData.InitDB(app.ApplicationServices); // 初始化数据库
         }
     }
 }
