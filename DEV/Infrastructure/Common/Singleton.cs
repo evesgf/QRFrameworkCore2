@@ -1,15 +1,8 @@
-﻿/*---------------------------------------------------------------
- * 作者：evesgf    创建时间：2016-8-2 10:58:04
- * 修改：evesgf    修改时间：2016-8-2 10:58:07
- *
- * 版本：V0.0.2
- * 
- * 描述：基础单例模板，不支持显示调用private的构造函数
- ---------------------------------------------------------------*/
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 
-using System;
-
-namespace Core.Common
+namespace Infrastructure.Common
 {
     public class Singleton<T> where T : Singleton<T>
     {

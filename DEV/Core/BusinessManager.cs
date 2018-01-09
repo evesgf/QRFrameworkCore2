@@ -1,12 +1,12 @@
 ﻿using Business;
-using Core.Common;
 using Core.Manager;
-using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
-using System.Reflection;
+using Infrastructure.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Core.Business
 {

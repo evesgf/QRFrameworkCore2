@@ -1,9 +1,12 @@
 ﻿using Business;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 
 namespace API.Controllers
 {
+    [Produces("application/json")]
+    [EnableCors("any")] //设置跨域处理的代理
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
@@ -21,6 +24,10 @@ namespace API.Controllers
         [HttpGet]
         public IEnumerable<string> Get()
         {
+            if (_iTestServices.Test() == null)
+            {
+                _iTestServices.TestAdd();
+            }
             return new string[] { "value1", "TestServices:" + _iTestServices.Test().Name};
         }
 

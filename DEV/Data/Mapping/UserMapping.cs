@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Data.Mapping
 {
-    public class UserMapping
+    public class UserMapping:IMapping
     {
         public UserMapping(EntityTypeBuilder<SysUser> entityBuilder)
         {
