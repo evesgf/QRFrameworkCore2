@@ -1,13 +1,17 @@
-﻿using Core;
-using Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using System;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+using TestAPI;
+using Microsoft.EntityFrameworkCore;
 
-namespace API
+namespace Test
 {
     public class Startup
     {
@@ -21,22 +25,27 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            //注册QR框架
-            services.UseQR();
-
             services.AddMvc();
+
+            var mySqlConnection = "Data Source=localhost;port=3306;Initial Catalog=EFCore2Test;uid=root;password=123456;Charset=utf8;SslMode=None;";
+
+            //增加EF服务
+            services.AddDbContext<MySqlDbContext1>(options => options.UseMySql(mySqlConnection));
+
+            services.AddTimedJob()
+                .AddEntityFrameworkDynamicTimedJob<MySqlDbContext1>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider context)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
 
-            //使用QR框架
-            app.UseQR(env, context);
+            app.UseTimedJob(); // 使用定时事务
+            SampleData.InitDB(app.ApplicationServices); // 初始化数据库
 
             app.UseMvc();
         }

@@ -1,8 +1,6 @@
 ﻿using Data.Entity;
 using Data.Mapping;
 using Microsoft.EntityFrameworkCore;
-using Pomelo.AspNetCore.TimedJob.EntityFramework;
-using System;
 
 namespace Data
 {
@@ -17,24 +15,17 @@ namespace Data
     /// 解决：mapping中设置id长度
     /// https://www.cnblogs.com/littleatp/p/4612896.html
     /// </summary>
-    public class MySqlDbContext : DbContext,ITimedJobContext
+    public class MySqlDbContext : DbContext
     {
-        public MySqlDbContext(DbContextOptions opt)
-            : base(opt)
-        {
-        }
-
-        public DbSet<TimedJob> TimedJobs { get; set; }
+        public MySqlDbContext(DbContextOptions<MySqlDbContext> options) : base(options){ }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
 
             //关联Mapping
-            new TimedJobMapping(modelBuilder.Entity<TimedJob>());
             new UserMapping(modelBuilder.Entity<SysUser>());
 
-            modelBuilder.SetupTimedJobs();
         }
     }
 }

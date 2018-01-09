@@ -1,9 +1,10 @@
 ﻿using Pomelo.AspNetCore.TimedJob;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
+using System.Threading.Tasks;
 
-namespace Core.TimeJob.Jobs
+namespace TestAPI.Jobs
 {
     public class PrintJob : Job
     {

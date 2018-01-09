@@ -1,23 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Data;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using Pomelo.AspNetCore.TimedJob;
+using System;
 
-namespace API
+namespace TestAPI
 {
     public static class SampleData
     {
         public static void InitDB(IServiceProvider services)
         {
-            var DB = services.GetRequiredService<MySqlDbContext>();
+            var DB = services.GetRequiredService<MySqlDbContext1>();
             var TimedJobService = services.GetRequiredService<TimedJobService>();
             DB.Database.EnsureCreated();
             DB.TimedJobs.Add(new Pomelo.AspNetCore.TimedJob.EntityFramework.TimedJob
             {
-                Id = "Core.TimeJob.Jobs.PrintJob.Print", // 按照完整类名+方法形式填写
+                Id = "Test.Jobs.PrintJob.Print", // 按照完整类名+方法形式填写
                 Begin = DateTime.Now,
                 Interval = 3000,
                 IsEnabled = true
