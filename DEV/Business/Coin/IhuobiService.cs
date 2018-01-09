@@ -20,6 +20,6 @@ namespace Business.Coin
         /// 法币卖一
         /// </summary>
         /// <returns></returns>
-        string LegalTenderSell();
+        Task<CrawlerResult<string>> LegalTenderSell();
     }
 }

@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using API.Models;
+using Business;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Business.Coin;
 using Microsoft.AspNetCore.Cors;
+using Newtonsoft.Json;
 
 namespace API.Controllers
 {
@@ -23,13 +26,17 @@ namespace API.Controllers
 
         // GET api/values
         [HttpGet]
-        public string Get()
+        public async Task<OTCPrice> OTCPrice()
         {
-            var reStr = string.Empty;
+            var reModel=new OTCPrice();
 
-            reStr = string.Format("火币买一:{0}CNY,卖一:{0}CNY", _IhuobiService.LegalTenderBuy());
+            var huobiBuy1 = await _IhuobiService.LegalTenderBuy();
+            var huobiSell1 = await _IhuobiService.LegalTenderSell();
 
-            return reStr;
+            reModel.Access = true;
+            reModel.Data = new[]{ string.Format("火币买一:{0}CNY,卖一:{1}CNY", huobiBuy1.Result, huobiSell1.Result) };
+
+            return reModel;
         }
     }
 }
