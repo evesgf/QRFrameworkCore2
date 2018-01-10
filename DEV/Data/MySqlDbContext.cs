@@ -25,7 +25,7 @@ namespace Data
 
             //关联Mapping
             new UserMapping(modelBuilder.Entity<SysUser>());
-
+            new CrawNewsMapping(modelBuilder.Entity<CrawlNews>());
         }
     }
 }
